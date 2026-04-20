@@ -1,315 +1,1187 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ritik Thakur | Portfolio</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #020617; /* slate-950 */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritik Thakur — MCA | NIT Trichy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .glass {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+  :root {
+    --navy: #0a0f1e;
+    --navy-light: #111827;
+    --navy-mid: #1a2540;
+    --accent: #4f8ef7;
+    --accent2: #7fd4c1;
+    --accent3: #f4a261;
+    --text: #e8eaf0;
+    --text-muted: #8b9ab5;
+    --text-dim: #4a5568;
+    --border: rgba(79,142,247,0.15);
+    --card: rgba(255,255,255,0.03);
+    --card-hover: rgba(255,255,255,0.06);
+    --glow: rgba(79,142,247,0.08);
+  }
 
-        .glass-hover:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            background: rgba(15, 23, 42, 0.8);
-            transform: translateY(-4px);
-        }
+  html { scroll-behavior: smooth; }
 
-        .text-gradient {
-            background: linear-gradient(to right, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out forwards;
-        }
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(10,15,30,0.85);
+    border-bottom: 1px solid var(--border);
+  }
 
-        .rank-badge {
-            background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-    </style>
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5rem 5rem;
+    gap: 4rem;
+    position: relative;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-bg-glow {
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(79,142,247,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s ease both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 0.7s ease 0.1s both;
+  }
+
+  .hero-name span {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-role {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.7s ease 0.2s both;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    animation: fadeInUp 0.7s ease 0.3s both;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    animation: fadeInUp 0.7s ease 0.4s both;
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1.75rem;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    border: 1px solid var(--accent);
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    padding: 0.75rem 1.75rem;
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    border: 1px solid var(--border);
+  }
+
+  .btn-outline:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+    transform: translateY(-2px);
+  }
+
+  /* ─── PROFILE PHOTO ─── */
+  .hero-right {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInRight 0.9s ease 0.2s both;
+  }
+
+  .photo-frame {
+    position: relative;
+    width: 340px;
+    height: 400px;
+  }
+
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: -20px;
+    right: 20px; bottom: 20px;
+    border: 1px solid rgba(79,142,247,0.3);
+    border-radius: 16px;
+    z-index: 0;
+  }
+
+  .photo-frame::after {
+    content: '';
+    position: absolute;
+    top: 20px; right: -20px;
+    bottom: -20px; left: 20px;
+    border: 1px solid rgba(127,212,193,0.2);
+    border-radius: 16px;
+    z-index: 0;
+  }
+
+  .photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 14px;
+    position: relative;
+    z-index: 1;
+    border: 2px solid var(--border);
+    filter: grayscale(10%) contrast(1.05);
+  }
+
+  .photo-badge {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent2);
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+
+  .photo-rank {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    z-index: 3;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+    box-shadow: 0 0 20px rgba(79,142,247,0.4);
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 6rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--text);
+  }
+
+  /* ─── SKILLS ─── */
+  #skills { background: var(--navy-light); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-card:hover { background: var(--card-hover); transform: translateY(-4px); }
+
+  .skill-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.75rem;
+  }
+
+  .skill-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: rgba(79,142,247,0.08);
+    color: var(--accent);
+    border: 1px solid rgba(79,142,247,0.2);
+    border-radius: 4px;
+    padding: 3px 8px;
+  }
+
+  /* ─── PROJECTS ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .project-card:hover::after { opacity: 1; }
+  .project-card:hover { border-color: rgba(79,142,247,0.35); transform: translateY(-6px); background: var(--card-hover); }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .project-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .project-status {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .status-done {
+    background: rgba(127,212,193,0.1);
+    color: var(--accent2);
+    border: 1px solid rgba(127,212,193,0.2);
+  }
+
+  .status-ongoing {
+    background: rgba(244,162,97,0.1);
+    color: var(--accent3);
+    border: 1px solid rgba(244,162,97,0.2);
+    animation: blink 2s ease infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tech-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 3px 10px;
+    color: var(--text-muted);
+  }
+
+  .project-date {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 1.2rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ─── EDUCATION ─── */
+  #education { background: var(--navy-light); }
+
+  .edu-timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .edu-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+
+  .edu-item {
+    position: relative;
+    padding: 1.75rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .edu-item:hover { background: var(--card-hover); border-color: rgba(79,142,247,0.3); }
+
+  .edu-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--navy-light);
+    box-shadow: 0 0 12px rgba(79,142,247,0.5);
+  }
+
+  .edu-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  .edu-degree {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .edu-institution {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-grade {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(79,142,247,0.08);
+    border: 1px solid rgba(79,142,247,0.2);
+    border-radius: 6px;
+    padding: 3px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ─── ACHIEVEMENTS ─── */
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .ach-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: all 0.3s;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .ach-card:hover { background: var(--card-hover); transform: translateY(-3px); }
+
+  .ach-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.2);
+  }
+
+  .ach-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .ach-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─── EXTRACURRICULAR ─── */
+  #extra { background: var(--navy-light); }
+
+  .extra-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .extra-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    transition: all 0.3s;
+  }
+
+  .extra-card:hover { background: var(--card-hover); border-color: rgba(79,142,247,0.3); }
+
+  .extra-role {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent3);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .extra-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .extra-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .extra-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 0.75rem;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    text-align: center;
+    padding: 6rem 5rem 8rem;
+  }
+
+  .contact-wrap {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .contact-email {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .contact-email:hover {
+    background: rgba(79,142,247,0.08);
+    border-color: rgba(79,142,247,0.4);
+    transform: translateY(-2px);
+  }
+
+  .contact-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .stat-item {
+    padding: 1.25rem;
+    background: var(--navy-light);
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+    .hero-right { order: -1; }
+    .photo-frame { width: 220px; height: 260px; }
+    section { padding: 4rem 2rem; }
+    .projects-grid, .achievements-grid, .extra-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .stats-bar { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
 </head>
-<body class="text-slate-200">
+<body>
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6 px-6">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="text-xl font-extrabold tracking-tighter text-white">
-                RITIK<span class="text-indigo-500">.</span>THAKUR
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#projects" class="hover:text-white transition-colors">Projects</a>
-                <a href="#skills" class="hover:text-white transition-colors">Skills</a>
-                <a href="#experience" class="hover:text-white transition-colors">Experience</a>
-            </div>
-            <a href="mailto:ritikthakurnit@gmail.com" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2 rounded-full text-sm font-bold transition-all shadow-lg shadow-indigo-500/20">
-                Contact
-            </a>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">RT</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow"></div>
+
+  <div class="hero-left">
+    <h1 class="hero-name">Ritik<br><span>Thakur</span></h1>
+    <p class="hero-role">MCA Candidate · NIT Trichy · Class of 2027</p>
+    <p class="hero-desc">
+      A passionate technologist with expertise in full-stack development and machine learning. 
+      Building scalable real-world systems while pursuing excellence at one of India's premier institutes.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="mailto:ritikthakurnit@gmail.com" class="btn-outline">Get in Touch</a>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-num">8.67</span>
+        <span class="stat-label">CGPA (NIT)</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">AIR 17</span>
+        <span class="stat-label">NIMCET 2024</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2+</span>
+        <span class="stat-label">Live Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Technologies</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="photo-frame">
+      <!-- Profile photo from the uploaded resume -->
+      <img 
+        src="/mnt/user-data/uploads/JanResume.pdf" 
+        class="photo-img"
+        alt="Ritik Thakur"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      >
+      <!-- Fallback avatar if photo doesn't load from PDF -->
+      <div class="photo-img" style="display:none; align-items:center; justify-content:center; background: linear-gradient(135deg, #1a2540 0%, #0f1929 100%); border-radius:14px; border:2px solid rgba(79,142,247,0.2); position:relative; z-index:1;">
+        <div style="text-align:center;">
+          <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#4f8ef7,#7fd4c1);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:#0a0f1e;">RT</div>
+          <p style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#e8eaf0;margin-bottom:4px;">Ritik Thakur</p>
+          <p style="font-size:0.8rem;color:#8b9ab5;">MCA · NIT Trichy</p>
         </div>
-    </nav>
+      </div>
+      <div class="photo-rank">AIR 17<br>NIMCET</div>
+      <div class="photo-badge">MCA · NIT Trichy · 2027</div>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="relative pt-40 pb-20 overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(79,70,229,0.1),_transparent_70%)] -z-10"></div>
-        <div class="max-w-6xl mx-auto px-6 text-center animate-fade-in">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full rank-badge text-indigo-400 text-sm font-semibold mb-8">
-                <i data-lucide="award" class="w-4 h-4"></i> NIMCET 2024 • AIR 17
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
-                Mastering Code.<br />
-                <span class="text-gradient">Architecting Solutions.</span>
-            </h1>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
-                MCA Student at <span class="text-white font-semibold">NIT Trichy</span>. 
-                Full-Stack Developer & ML Enthusiast focused on building scalable community-driven platforms.
-            </p>
-            <div class="flex justify-center gap-4">
-                <a href="#projects" class="flex items-center gap-2 bg-white text-slate-950 px-8 py-3 rounded-2xl font-bold hover:bg-slate-200 transition-all group">
-                    View Work <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-                </a>
-                <div class="flex gap-2">
-                    <a href="#" class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all"><i data-lucide="github" class="w-5 h-5"></i></a>
-                    <a href="#" class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Technical Arsenal</p>
+  <h2 class="section-title">Skills &amp; Technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-category">Languages</div>
+      <div style="font-size:0.9rem;color:var(--text-muted);">Core programming foundations</div>
+      <div class="skill-tags">
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">Python</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-category">Web Technologies</div>
+      <div style="font-size:0.9rem;color:var(--text-muted);">Frontend &amp; backend development</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Express.js</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-category">Databases</div>
+      <div style="font-size:0.9rem;color:var(--text-muted);">Data storage &amp; management</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">SQLite</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-category">Machine Learning</div>
+      <div style="font-size:0.9rem;color:var(--text-muted);">AI &amp; computer vision</div>
+      <div class="skill-tags">
+        <span class="skill-tag">YOLOv8</span>
+        <span class="skill-tag">EasyOCR</span>
+        <span class="skill-tag">Tesseract</span>
+        <span class="skill-tag">Flask</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔧</div>
+      <div class="skill-category">Tools &amp; DevOps</div>
+      <div style="font-size:0.9rem;color:var(--text-muted);">Version control &amp; workflow</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Socket.IO</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">💡</div>
+      <div class="skill-category">Areas of Interest</div>
+      <div style="font-size:0.9rem;color:var(--text-muted);">Deep expertise &amp; passion</div>
+      <div class="skill-tags">
+        <span class="skill-tag">DSA</span>
+        <span class="skill-tag">OOP</span>
+        <span class="skill-tag">ML Systems</span>
+        <span class="skill-tag">Full Stack</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Stats Section -->
-    <section class="py-12 border-y border-slate-900 bg-slate-900/20">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-white mb-1">8.67</div>
-                    <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">MCA CGPA</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-white mb-1">AIR 17</div>
-                    <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">NIMCET Rank</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-white mb-1">Top 30</div>
-                    <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">District Rank</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-white mb-1">2027</div>
-                    <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">Grad Year</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Featured Work</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-24">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12">
-                <h2 class="text-3xl font-bold text-white mb-2">Featured Projects</h2>
-                <div class="h-1 w-12 bg-indigo-500 rounded-full"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
-                <div class="glass glass-hover p-8 rounded-3xl transition-all duration-300">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="p-3 bg-indigo-500/10 rounded-2xl text-indigo-400">
-                            <i data-lucide="layout" class="w-6 h-6"></i>
-                        </div>
-                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Full Stack</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Campus Online Marketplace</h3>
-                    <p class="text-slate-400 mb-6 text-sm leading-relaxed">
-                        Developed a full-stack marketplace for students using React and Node.js. 
-                        Implemented real-time chat via Socket.IO and secure user authentication.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span class="px-3 py-1 bg-slate-800 rounded-lg text-xs font-semibold text-slate-400">React</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded-lg text-xs font-semibold text-slate-400">Node.js</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded-lg text-xs font-semibold text-slate-400">MongoDB</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded-lg text-xs font-semibold text-slate-400">Socket.IO</span>
-                    </div>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-indigo-400 transition-colors">
-                        View Details <i data-lucide="external-link" class="w-4 h-4"></i>
-                    </a>
-                </div>
+    <div class="project-card reveal">
+      <div class="project-header">
+        <span class="project-number">01 / FULL STACK</span>
+        <span class="project-status status-done">Completed</span>
+      </div>
+      <h3 class="project-name">Campus Online Marketplace</h3>
+      <p class="project-desc">
+        A peer-to-peer campus marketplace enabling students to buy and sell products 
+        within the college ecosystem. Features real-time chat, secure authentication, 
+        and a fully responsive design — built end-to-end from database to interface.
+      </p>
+      <div class="project-tech">
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">Express.js</span>
+        <span class="tech-pill">MongoDB</span>
+        <span class="tech-pill">Socket.IO</span>
+        <span class="tech-pill">JavaScript</span>
+      </div>
+      <div class="project-date">Nov 2025 → Jan 2026</div>
+    </div>
 
-                <!-- Project 2 -->
-                <div class="glass glass-hover p-8 rounded-3xl transition-all duration-300">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="p-3 bg-purple-500/10 rounded-2xl text-purple-400">
-                            <i data-lucide="cpu" class="w-6 h-6"></i>
-                        </div>
-                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Machine Learning</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Smart Parking System</h3>
-                    <p class="text-slate-400 mb-6 text-sm leading-relaxed">
-                        ML-based solution using YOLOv8 for detection and EasyOCR for recognition. 
-                        Built with Flask to handle automatic slot allocation and exit billing.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <span class="px-3 py-1 bg-slate-800 rounded-lg text-xs font-semibold text-slate-400">Python</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded-lg text-xs font-semibold text-slate-400">YOLOv8</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded-lg text-xs font-semibold text-slate-400">Flask</span>
-                        <span class="px-3 py-1 bg-slate-800 rounded-lg text-xs font-semibold text-slate-400">OpenCV</span>
-                    </div>
-                    <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-purple-400 transition-colors">
-                        View Details <i data-lucide="external-link" class="w-4 h-4"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="project-card reveal">
+      <div class="project-header">
+        <span class="project-number">02 / ML + BACKEND</span>
+        <span class="project-status status-ongoing">● Ongoing</span>
+      </div>
+      <h3 class="project-name">Smart Parking System</h3>
+      <p class="project-desc">
+        An intelligent ML-powered parking solution using computer vision for automated 
+        license plate detection and OCR-based recognition. Handles real-time slot allocation, 
+        entry logging, and auto-billing — built with a modular, scalable architecture.
+      </p>
+      <div class="project-tech">
+        <span class="tech-pill">YOLOv8</span>
+        <span class="tech-pill">EasyOCR</span>
+        <span class="tech-pill">Tesseract</span>
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">Flask</span>
+        <span class="tech-pill">SQLite</span>
+      </div>
+      <div class="project-date">Jun 2025 → Present</div>
+    </div>
 
-    <!-- Skills Grid -->
-    <section id="skills" class="py-24 bg-slate-900/10">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-white mb-4">Technical Stack</h2>
-                <p class="text-slate-400">Modern tools I use to bring ideas to life.</p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="glass p-6 rounded-2xl">
-                    <h4 class="text-indigo-400 font-bold text-xs uppercase tracking-widest mb-4">Languages</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">C++</span>
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">Python</span>
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">C</span>
-                    </div>
-                </div>
-                <div class="glass p-6 rounded-2xl">
-                    <h4 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-4">Web Tech</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">React</span>
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">Node.js</span>
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">JS</span>
-                    </div>
-                </div>
-                <div class="glass p-6 rounded-2xl">
-                    <h4 class="text-emerald-400 font-bold text-xs uppercase tracking-widest mb-4">Database</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">MongoDB</span>
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">MySQL</span>
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">SQL</span>
-                    </div>
-                </div>
-                <div class="glass p-6 rounded-2xl">
-                    <h4 class="text-orange-400 font-bold text-xs uppercase tracking-widest mb-4">Other</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">Git</span>
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">VS Code</span>
-                        <span class="text-sm bg-slate-900 px-3 py-1 rounded-lg">GitHub</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  </div>
+</section>
 
-    <!-- Experience & Education -->
-    <section id="experience" class="py-24">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16">
-                <!-- Education -->
-                <div>
-                    <div class="flex items-center gap-3 mb-10">
-                        <i data-lucide="graduation-cap" class="text-indigo-500"></i>
-                        <h2 class="text-2xl font-bold text-white">Education</h2>
-                    </div>
-                    <div class="space-y-12">
-                        <div class="relative pl-8 border-l border-slate-800">
-                            <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]"></div>
-                            <h4 class="text-lg font-bold text-white">Master in Computer Applications (MCA)</h4>
-                            <p class="text-indigo-400 font-semibold mb-2">NIT Trichy • 2024 - 2027</p>
-                            <p class="text-slate-500 text-sm italic">Current Academic Standing: 8.67 CGPA</p>
-                        </div>
-                        <div class="relative pl-8 border-l border-slate-800">
-                            <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-slate-700"></div>
-                            <h4 class="text-lg font-bold text-white">Bachelor in Computer Applications (BCA)</h4>
-                            <p class="text-slate-400 font-semibold mb-2">IFTM University, Moradabad • 2020 - 2023</p>
-                            <p class="text-slate-500 text-sm">Graduated with 8.62 CGPA</p>
-                        </div>
-                    </div>
-                </div>
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Academic Journey</p>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-timeline">
 
-                <!-- Responsibility & Sports -->
-                <div>
-                    <div class="flex items-center gap-3 mb-10">
-                        <i data-lucide="user" class="text-purple-500"></i>
-                        <h2 class="text-2xl font-bold text-white">Leadership & Beyond</h2>
-                    </div>
-                    <div class="glass p-6 rounded-2xl mb-8">
-                        <h4 class="text-lg font-bold text-white mb-1">Deputy Manager (Design)</h4>
-                        <p class="text-purple-400 font-medium mb-4 text-sm uppercase tracking-wider">Aayaam (Hindi Club), NIT Trichy</p>
-                        <ul class="text-slate-400 space-y-3 text-sm">
-                            <li class="flex gap-2"> <span class="text-indigo-500">•</span> Managing visual branding and creative campaign designs.</li>
-                            <li class="flex gap-2"> <span class="text-indigo-500">•</span> Coordinating club activities to promote Hindi literature.</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex justify-between items-center">
-                            <span class="text-xs font-bold text-slate-300">March Past (3rd)</span>
-                            <i data-lucide="trophy" class="w-4 h-4 text-orange-500"></i>
-                        </div>
-                        <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex justify-between items-center">
-                            <span class="text-xs font-bold text-slate-300">Kabaddi & Marathon</span>
-                            <i data-lucide="activity" class="w-4 h-4 text-indigo-500"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="edu-item reveal">
+      <div class="edu-year">2024 – 2027 (Expected)</div>
+      <div class="edu-degree">Master of Computer Applications (MCA)</div>
+      <div class="edu-institution">National Institute of Technology, Trichy — Tamil Nadu</div>
+      <span class="edu-grade">CGPA: 8.67*</span>
+    </div>
 
-    <!-- Footer -->
-    <footer class="py-24 border-t border-slate-900">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-extrabold text-white mb-6">Let's work together.</h2>
-            <p class="text-slate-400 mb-12">I'm currently looking for internships and collaborative projects in Web Development and Machine Learning.</p>
-            <div class="flex justify-center gap-6 mb-16">
-                <a href="mailto:ritikthakurnit@gmail.com" class="p-4 rounded-full glass hover:text-indigo-400 transition-all"><i data-lucide="mail"></i></a>
-                <a href="#" class="p-4 rounded-full glass hover:text-indigo-400 transition-all"><i data-lucide="github"></i></a>
-                <a href="#" class="p-4 rounded-full glass hover:text-indigo-400 transition-all"><i data-lucide="linkedin"></i></a>
-            </div>
-            <p class="text-slate-600 text-xs font-medium tracking-widest uppercase">© 2026 Ritik Thakur • Built with Precision</p>
-        </div>
-    </footer>
+    <div class="edu-item reveal">
+      <div class="edu-year">2020 – 2023</div>
+      <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+      <div class="edu-institution">IFTM University, Moradabad — Uttar Pradesh</div>
+      <span class="edu-grade">CGPA: 8.62</span>
+    </div>
 
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+    <div class="edu-item reveal">
+      <div class="edu-year">2019</div>
+      <div class="edu-degree">Class XII — CBSE</div>
+      <div class="edu-institution">Diamond Public School, Bhikanpur, Kanth Moradabad</div>
+      <span class="edu-grade">74.6%</span>
+    </div>
 
-        // Navbar Scroll Logic
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-slate-950/80', 'backdrop-blur-md', 'py-4', 'border-b', 'border-slate-800');
-                nav.classList.remove('py-6');
-            } else {
-                nav.classList.remove('bg-slate-950/80', 'backdrop-blur-md', 'py-4', 'border-b', 'border-slate-800');
-                nav.classList.add('py-6');
-            }
-        });
-    </script>
+    <div class="edu-item reveal">
+      <div class="edu-year">2017</div>
+      <div class="edu-degree">Class X — CBSE</div>
+      <div class="edu-institution">KC Public School, Kanth Moradabad</div>
+      <span class="edu-grade">CGPA: 9.6</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <p class="section-label">Milestones</p>
+  <h2 class="section-title">Achievements</h2>
+  <div class="achievements-grid">
+
+    <div class="ach-card reveal">
+      <div class="ach-icon">🏆</div>
+      <div>
+        <div class="ach-title">All India Rank 17 — NIMCET 2024</div>
+        <div class="ach-desc">Secured AIR 17 in the national-level MCA Common Entrance Test conducted by NIT Jamshedpur, qualifying for admission to NIT Trichy.</div>
+      </div>
+    </div>
+
+    <div class="ach-card reveal">
+      <div class="ach-icon">🥇</div>
+      <div>
+        <div class="ach-title">National GK Competition — School Topper</div>
+        <div class="ach-desc">Secured 1st position at school level and ranked in the top 30 at district level in the Deendayal Upadhyay Birth Centenary GK Competition (2017).</div>
+      </div>
+    </div>
+
+    <div class="ach-card reveal">
+      <div class="ach-icon">🥉</div>
+      <div>
+        <div class="ach-title">3rd Place — March Past, Sportsfete'24</div>
+        <div class="ach-desc">Secured third place in March Past at NIT Trichy's inter-department sports festival, demonstrating discipline and teamwork.</div>
+      </div>
+    </div>
+
+    <div class="ach-card reveal">
+      <div class="ach-icon">🎽</div>
+      <div>
+        <div class="ach-title">Multi-Sport Participant — Sportsfete'24</div>
+        <div class="ach-desc">Actively participated in Marathon and Kabaddi events at NIT Trichy's annual inter-department sports festival, showcasing versatility.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXTRA -->
+<section id="extra">
+  <p class="section-label">Beyond Code</p>
+  <h2 class="section-title">Extracurricular &amp; Responsibilities</h2>
+  <div class="extra-grid">
+
+    <div class="extra-card reveal">
+      <div class="extra-role">Leadership · Design</div>
+      <div class="extra-title">Deputy Manager — Aayaam (Hindi Club, NIT Trichy)</div>
+      <div class="extra-desc">
+        Contributes to promoting Hindi language and literature through creative events and cultural outreach. 
+        Leads planning &amp; coordination of club activities and manages visual branding and event design.
+      </div>
+      <div class="extra-period">Sep 2024 – Present</div>
+    </div>
+
+    <div class="extra-card reveal">
+      <div class="extra-role">Sports · Fitness</div>
+      <div class="extra-title">Active Sports Participant</div>
+      <div class="extra-desc">
+        Regularly participates in inter-department sports events at NIT Trichy including Marathon, Kabaddi, 
+        and March Past — demonstrating physical fitness, team spirit, and competitive resilience.
+      </div>
+      <div class="extra-period">Sportsfete'24</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <p class="section-label" style="justify-content:center;">Let's Connect</p>
+    <h2 class="section-title" style="font-size:2.4rem;">Open for Opportunities</h2>
+    <p class="contact-desc">
+      Actively seeking internships and full-time roles in software development, machine learning, 
+      and data engineering. Feel free to reach out for collaborations, opportunities, or just a conversation.
+    </p>
+    <a href="mailto:ritikthakurnit@gmail.com" class="contact-email">ritikthakurnit@gmail.com</a>
+    <p class="contact-desc" style="font-size:0.8rem;margin-top:1rem;color:var(--text-dim);">
+      NIT Trichy · 620015 · Tamil Nadu, India
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span style="color:var(--text-dim);">© 2025 Ritik Thakur</span>
+  <span>Built with precision · MCA @ <span>NIT Trichy</span></span>
+  <span style="color:var(--text-dim);">AIR 17 · NIMCET 2024</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+    });
+  });
+
+  // Photo fallback - try to show the PDF page as image via canvas
+  // Since the PDF photo is already embedded, we show the initials avatar as a professional placeholder
+  const photoImg = document.querySelector('.photo-img');
+  if (photoImg && photoImg.tagName === 'IMG') {
+    photoImg.onerror = () => {
+      photoImg.style.display = 'none';
+      photoImg.nextElementSibling.style.display = 'flex';
+    };
+    // Force the fallback since we can't render PDF images directly in HTML
+    photoImg.style.display = 'none';
+    photoImg.nextElementSibling.style.display = 'flex';
+  }
+</script>
 </body>
 </html>
